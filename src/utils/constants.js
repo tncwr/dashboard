@@ -50,13 +50,13 @@ export const ACTIVATED_DISTRICTS = [
 export const GMAP_KEY = "AIzaSyCd-dCJ0kZggouOsYQ9onr87k03CnZxUOg";
 
 export const AVAILABILITY_TYPES_ORDERED = [
-  1, 150, 10, 20, 30, 120, 110, 100, 40, 60, 50, 70,
+  1, 150, 10, 20, 30, 120, 110, 100, 40, 60, 50, 70, 111, 112, 113, 114,
 ];
 
-export const ORDINARY = [4444, 30, 1, 4];
-export const OXYGEN = [3333, 120, 150, 60];
-export const ICU = [2222, 110, 10, 50];
-export const VENTILATOR = [1111, 100, 20, 70];
+export const ORDINARY = [4444, 30, 1, 4, 111];
+export const OXYGEN = [3333, 120, 150, 60, 112];
+export const ICU = [2222, 110, 10, 50, 113];
+export const VENTILATOR = [1111, 100, 20, 70, 114];
 
 export const AVAILABILITY_TYPES_TOTAL_ORDERED = [
   { id: 4444, name: "Ordinary Bed", non_covid: 1, covid: 30 },
@@ -78,6 +78,10 @@ export const AVAILABILITY_TYPES = {
   110: "Covid ICU",
   120: "Covid Oxygen Beds",
   30: "Covid Ordinary Bed",
+  111: "Pediatric Covid Ordinary Beds",
+  112: "Pediatric Covid Oxygen beds",
+  113: "Pediatric Covid ICU (ICU without ventilator)",
+  114: "Pediatric Covid Ventilators (ICU with ventilator)",
 };
 
 export const AVAILABILITY_TYPES_PROXY = {
@@ -93,6 +97,10 @@ export const AVAILABILITY_TYPES_PROXY = {
   110: "Covid",
   120: "Covid",
   30: "Covid",
+  111: "Pediatric",
+  112: "Pediatric",
+  113: "Pediatric",
+  114: "Pediatric",
 };
 
 export const PATIENT_TYPES = {

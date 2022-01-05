@@ -80,6 +80,10 @@ function CapacityForecast({
         110: { total: 0, used: 0 },
         120: { total: 0, used: 0 },
         30: { total: 0, used: 0 },
+        111: { total: 0, used: 0 },
+        112: { total: 0, used: 0 },
+        113: { total: 0, used: 0 },
+        114: { total: 0, used: 0 },
       };
       Object.keys(AVAILABILITY_TYPES).forEach((k) => {
         _t[k].used += cur.capacity[k]?.current_capacity || 0;
