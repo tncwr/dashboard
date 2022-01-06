@@ -168,7 +168,17 @@ function Capacity({ filterDistrict, filterFacilityTypes, date }) {
       const capacityCardData = filtered.reduce((acc, facility) => {
         const covidData = getCapacityBedData([30, 120, 110, 100], facility);
         const nonCovidData = getCapacityBedData([1, 150, 10, 20], facility);
-        const finalTotalData = getFinalTotalData(covidData, nonCovidData);
+        const cmchisData = getCapacityBedData([40, 60, 50, 70], facility);
+        const pediatricData = getCapacityBedData(
+          [111, 112, 113, 114],
+          facility
+        );
+        const finalTotalData = getFinalTotalData(
+          covidData,
+          nonCovidData,
+          cmchisData,
+          pediatricData
+        );
         const noCapacity = finalTotalData.every((item) => item.total === 0);
         if (facility.date !== dateString(date) || noCapacity) {
           return acc;
