@@ -59,10 +59,38 @@ export const ICU = [2222, 110, 10, 50, 113];
 export const VENTILATOR = [1111, 100, 20, 70, 114];
 
 export const AVAILABILITY_TYPES_TOTAL_ORDERED = [
-  { id: 4444, name: "Ordinary Bed", non_covid: 1, covid: 30 },
-  { id: 3333, name: "Oxygen Beds", non_covid: 150, covid: 120 },
-  { id: 2222, name: "ICU", non_covid: 10, covid: 110 },
-  { id: 1111, name: "Ventilator", non_covid: 20, covid: 100 },
+  {
+    id: 4444,
+    name: "Ordinary Bed",
+    non_covid: 1,
+    covid: 30,
+    cmchis: 40,
+    pediatric: 111,
+  },
+  {
+    id: 3333,
+    name: "Oxygen Beds",
+    non_covid: 150,
+    covid: 120,
+    cmchis: 60,
+    pediatric: 112,
+  },
+  {
+    id: 2222,
+    name: "ICU",
+    non_covid: 10,
+    covid: 110,
+    cmchis: 50,
+    pediatric: 113,
+  },
+  {
+    id: 1111,
+    name: "Ventilator",
+    non_covid: 20,
+    covid: 100,
+    cmchis: 70,
+    pediatric: 114,
+  },
 ];
 
 export const AVAILABILITY_TYPES = {
@@ -74,10 +102,10 @@ export const AVAILABILITY_TYPES = {
   50: "CMCHIS ICU",
   60: "CMCHIS Oxygen Beds",
   40: "CMCHIS Ordinary Bed",
-  100: "Covid ICU w/ Ventilator",
-  110: "Covid ICU",
-  120: "Covid Oxygen Beds",
-  30: "Covid Ordinary Bed",
+  100: "Adult Covid Ventilators (ICU with ventilator)",
+  110: "Adult Covid ICU (ICU without ventilator)",
+  120: "Adult Covid Oxygen beds",
+  30: "Adult Covid Ordinary Bed",
   111: "Pediatric Covid Ordinary Beds",
   112: "Pediatric Covid Oxygen beds",
   113: "Pediatric Covid ICU (ICU without ventilator)",
