@@ -106,8 +106,10 @@ export function CapacityCard({ data }) {
             </div>
           </div>
 
-          {showBedInfo(data.covid, "Covid")}
+          {showBedInfo(data.covid, "Adult Covid")}
           {showBedInfo(data.non_covid, "Non-Covid")}
+          {showBedInfo(data.cmchis, "CMCHIS")}
+          {showBedInfo(data.pediatric, "Pediatric")}
           {showBedInfo(data.final_total, "Total")}
         </div>
       </div>
