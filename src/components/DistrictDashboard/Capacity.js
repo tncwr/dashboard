@@ -119,11 +119,22 @@ function Capacity({ filterDistrict, filterFacilityTypes, date }) {
             const current_covid = c.capacity[k.covid]?.current_capacity || 0;
             const current_non_covid =
               c.capacity[k.non_covid]?.current_capacity || 0;
+            const current_cmchis = c.capacity[k.cmchis]?.current_capacity || 0;
+            const current_pediatric =
+              c.capacity[k.pediatric]?.current_capacity || 0;
             const total_covid = c.capacity[k.covid]?.total_capacity || 0;
             const total_non_covid =
               c.capacity[k.non_covid]?.total_capacity || 0;
-            a[key][k.id].used += current_covid + current_non_covid;
-            a[key][k.id].total += total_covid + total_non_covid;
+            const total_cmchis = c.capacity[k.cmchis]?.total_capacity || 0;
+            const total_pediatric =
+              c.capacity[k.pediatric]?.total_capacity || 0;
+            a[key][k.id].used +=
+              current_covid +
+              current_non_covid +
+              current_cmchis +
+              current_pediatric;
+            a[key][k.id].total +=
+              total_covid + total_non_covid + total_cmchis + total_pediatric;
           });
 
           return a;
@@ -196,6 +207,8 @@ function Capacity({ filterDistrict, filterFacilityTypes, date }) {
             }`,
             covid: covidData,
             non_covid: nonCovidData,
+            cmchis: cmchisData,
+            pediatric: pediatricData,
             final_total: finalTotalData,
           },
         ];
