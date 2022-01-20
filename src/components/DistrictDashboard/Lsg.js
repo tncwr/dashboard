@@ -139,7 +139,10 @@ function Lsg({ filterDistrict, date }) {
   return (
     <>
       <div className="grid gap-1 grid-rows-none mb-8 sm:grid-flow-col-dense sm:grid-rows-1 sm:place-content-end">
-        <ValuePill title="Lsg Count" value={lsgTrivia.current.count} />
+        <ValuePill
+          title="Village / Town Count"
+          value={lsgTrivia.current.count}
+        />
       </div>
 
       <div className="grid-col-1 grid gap-6 mb-8 md:grid-cols-4">
@@ -157,7 +160,7 @@ function Lsg({ filterDistrict, date }) {
           title="Lsg"
           className="mb-8"
           columns={[
-            "Name of LSG",
+            "Name of Village / Town",
             "Live",
             "Discharged",
             ...Object.values(PATIENT_TYPES),
