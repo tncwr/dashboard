@@ -331,6 +331,9 @@
 .react-calendar button {
   @apply my-1;
 }
+.minus-margin-left {
+  margin-left: -10px;
+}
 
 /*! purgecss end ignore */
 
