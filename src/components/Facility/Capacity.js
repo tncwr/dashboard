@@ -16,14 +16,30 @@ const initialFacilitiesTrivia = {
   10: { total: 0, used: 0 },
   150: { total: 0, used: 0 },
   1: { total: 0, used: 0 },
+  25: { total: 0, used: 0 },
+  15: { total: 0, used: 0 },
+  155: { total: 0, used: 0 },
+  5: { total: 0, used: 0 },
   70: { total: 0, used: 0 },
   50: { total: 0, used: 0 },
   60: { total: 0, used: 0 },
   40: { total: 0, used: 0 },
+  75: { total: 0, used: 0 },
+  55: { total: 0, used: 0 },
+  65: { total: 0, used: 0 },
+  45: { total: 0, used: 0 },
   100: { total: 0, used: 0 },
   110: { total: 0, used: 0 },
   120: { total: 0, used: 0 },
   30: { total: 0, used: 0 },
+  2: { total: 0, used: 0 },
+  12: { total: 0, used: 0 },
+  22: { total: 0, used: 0 },
+  32: { total: 0, used: 0 },
+  3: { total: 0, used: 0 },
+  13: { total: 0, used: 0 },
+  23: { total: 0, used: 0 },
+  33: { total: 0, used: 0 },
   1111: { total: 0, used: 0 },
   2222: { total: 0, used: 0 },
   3333: { total: 0, used: 0 },
@@ -178,21 +194,47 @@ const Capacity = ({ filtered, date }) => {
             let current_covid = c.capacity[k.covid]?.current_capacity || 0;
             let current_non_covid =
               c.capacity[k.non_covid]?.current_capacity || 0;
+            const current_p_non_covid =
+              c.capacity[k.p_non_covid]?.current_capacity || 0;
             const current_cmchis = c.capacity[k.cmchis]?.current_capacity || 0;
+            const current_p_cmchis =
+              c.capacity[k.p_cmchis]?.current_capacity || 0;
+            const current_casulatily =
+              c.capacity[k.casulatily]?.current_capacity || 0;
+            const current_makeshift =
+              c.capacity[k.makeshift]?.current_capacity || 0;
             const current_pediatric =
               c.capacity[k.pediatric]?.current_capacity || 0;
             let total_covid = c.capacity[k.covid]?.total_capacity || 0;
             let total_non_covid = c.capacity[k.non_covid]?.total_capacity || 0;
+            const total_p_non_covid =
+              c.capacity[k.p_non_covid]?.total_capacity || 0;
             const total_cmchis = c.capacity[k.cmchis]?.total_capacity || 0;
+            const total_p_cmchis = c.capacity[k.p_cmchis]?.total_capacity || 0;
+            const total_casulatily =
+              c.capacity[k.casulatily]?.total_capacity || 0;
+            const total_makeshift =
+              c.capacity[k.makeshift]?.total_capacity || 0;
             const total_pediatric =
               c.capacity[k.pediatric]?.total_capacity || 0;
             a[key][k.id].used +=
               current_covid +
               current_non_covid +
+              current_p_non_covid +
               current_cmchis +
+              current_p_cmchis +
+              current_casulatily +
+              current_makeshift +
               current_pediatric;
             a[key][k.id].total +=
-              total_covid + total_non_covid + total_cmchis + total_pediatric;
+              total_covid +
+              total_non_covid +
+              total_p_non_covid +
+              total_cmchis +
+              total_p_cmchis +
+              total_casulatily +
+              total_makeshift +
+              total_pediatric;
           });
         }
         return a;

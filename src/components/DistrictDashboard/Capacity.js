@@ -66,14 +66,30 @@ const initialFacilitiesTrivia = {
   10: { total: 0, used: 0 },
   150: { total: 0, used: 0 },
   1: { total: 0, used: 0 },
+  25: { total: 0, used: 0 },
+  15: { total: 0, used: 0 },
+  155: { total: 0, used: 0 },
+  5: { total: 0, used: 0 },
   70: { total: 0, used: 0 },
   50: { total: 0, used: 0 },
   60: { total: 0, used: 0 },
   40: { total: 0, used: 0 },
+  75: { total: 0, used: 0 },
+  55: { total: 0, used: 0 },
+  65: { total: 0, used: 0 },
+  45: { total: 0, used: 0 },
   100: { total: 0, used: 0 },
   110: { total: 0, used: 0 },
   120: { total: 0, used: 0 },
   30: { total: 0, used: 0 },
+  2: { total: 0, used: 0 },
+  12: { total: 0, used: 0 },
+  22: { total: 0, used: 0 },
+  32: { total: 0, used: 0 },
+  3: { total: 0, used: 0 },
+  13: { total: 0, used: 0 },
+  23: { total: 0, used: 0 },
+  33: { total: 0, used: 0 },
   1111: { total: 0, used: 0 },
   2222: { total: 0, used: 0 },
   3333: { total: 0, used: 0 },
@@ -119,22 +135,48 @@ function Capacity({ filterDistrict, filterFacilityTypes, date }) {
             const current_covid = c.capacity[k.covid]?.current_capacity || 0;
             const current_non_covid =
               c.capacity[k.non_covid]?.current_capacity || 0;
+            const current_p_non_covid =
+              c.capacity[k.p_non_covid]?.current_capacity || 0;
             const current_cmchis = c.capacity[k.cmchis]?.current_capacity || 0;
+            const current_p_cmchis =
+              c.capacity[k.p_cmchis]?.current_capacity || 0;
+            const current_casulatily =
+              c.capacity[k.casulatily]?.current_capacity || 0;
+            const current_makeshift =
+              c.capacity[k.makeshift]?.current_capacity || 0;
             const current_pediatric =
               c.capacity[k.pediatric]?.current_capacity || 0;
             const total_covid = c.capacity[k.covid]?.total_capacity || 0;
             const total_non_covid =
               c.capacity[k.non_covid]?.total_capacity || 0;
+            const total_p_non_covid =
+              c.capacity[k.p_non_covid]?.total_capacity || 0;
             const total_cmchis = c.capacity[k.cmchis]?.total_capacity || 0;
+            const total_p_cmchis = c.capacity[k.p_cmchis]?.total_capacity || 0;
+            const total_casulatily =
+              c.capacity[k.casulatily]?.total_capacity || 0;
+            const total_makeshift =
+              c.capacity[k.makeshift]?.total_capacity || 0;
             const total_pediatric =
               c.capacity[k.pediatric]?.total_capacity || 0;
             a[key][k.id].used +=
               current_covid +
               current_non_covid +
+              current_p_non_covid +
               current_cmchis +
+              current_p_cmchis +
+              current_casulatily +
+              current_makeshift +
               current_pediatric;
             a[key][k.id].total +=
-              total_covid + total_non_covid + total_cmchis + total_pediatric;
+              total_covid +
+              total_non_covid +
+              total_p_non_covid +
+              total_cmchis +
+              total_p_cmchis +
+              total_casulatily +
+              total_makeshift +
+              total_pediatric;
           });
 
           return a;
@@ -179,16 +221,30 @@ function Capacity({ filterDistrict, filterFacilityTypes, date }) {
       const capacityCardData = filtered.reduce((acc, facility) => {
         const covidData = getCapacityBedData([30, 120, 110, 100], facility);
         const nonCovidData = getCapacityBedData([1, 150, 10, 20], facility);
+        const nonPediatricCovidData = getCapacityBedData(
+          [5, 155, 15, 25],
+          facility
+        );
         const cmchisData = getCapacityBedData([40, 60, 50, 70], facility);
+        const cmchisPediatricData = getCapacityBedData(
+          [45, 65, 55, 75],
+          facility
+        );
+        const casulatilyData = getCapacityBedData([3, 13, 23, 33], facility);
+        const makeshiftData = getCapacityBedData([2, 12, 22, 32], facility);
         const pediatricData = getCapacityBedData(
           [111, 112, 113, 114],
           facility
         );
         const finalTotalData = getFinalTotalData(
           covidData,
-          nonCovidData,
+          pediatricData,
           cmchisData,
-          pediatricData
+          cmchisPediatricData,
+          casulatilyData,
+          makeshiftData,
+          nonCovidData,
+          nonPediatricCovidData
         );
         const noCapacity = finalTotalData.every((item) => item.total === 0);
         if (facility.date !== dateString(date) || noCapacity) {
@@ -206,9 +262,13 @@ function Capacity({ filterDistrict, filterFacilityTypes, date }) {
               facility.actualDischargedPatients || 0
             }`,
             covid: covidData,
-            non_covid: nonCovidData,
-            cmchis: cmchisData,
             pediatric: pediatricData,
+            cmchis: cmchisData,
+            p_cmchis: cmchisPediatricData,
+            casulatily: casulatilyData,
+            makeshift: makeshiftData,
+            non_covid: nonCovidData,
+            p_non_covid: nonCovidData,
             final_total: finalTotalData,
           },
         ];
